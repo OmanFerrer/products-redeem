@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUser, setUser } from './redux/slices/userSlice';
+import { useGetUserQuery } from './services/api';
+
+import Header from './components/layout/Header';
+import ProductsPage from './pages/products/ProductsPage';
 
 function App() {
+  const dispatch = useDispatch();
+  const { isSuccess: successUser, data: userData } = useGetUserQuery();
+  const user = useSelector(getUser);
+
+  useEffect(() => {
+    successUser && dispatch(setUser(userData));
+  }, [successUser, userData, dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app" className="bg-gray-100">
+      <Header user={user}/>      
+      <ProductsPage user={user}/>
     </div>
   );
 }
