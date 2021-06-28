@@ -5,7 +5,7 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://coding-challenge-api.aerolab.co/',
     prepareHeaders: (headers) => {
-      headers.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGNkNWYxMDliNzc4MTAwMjA5YzVhZDQiLCJpYXQiOjE2MjQwNzE5NTJ9.JEOTxkCrGn9pPRh1sIPfzDbZ_O14NBGB6htwOTctDWY');
+      headers.set('Authorization', 'Bearer <TOKEN>');
       return headers;
     },
   }),
